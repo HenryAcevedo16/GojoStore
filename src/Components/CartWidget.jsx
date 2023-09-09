@@ -23,6 +23,8 @@ function CartWidget() {
   );
 }
 
+export default CartWidget;
+
 const Cart = styled.div`
   .animated-container {
     position: relative;
@@ -160,4 +162,4 @@ const Cart = styled.div`
   }
 `;
 
-export default CartWidget;
+

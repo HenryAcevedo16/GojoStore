@@ -1,15 +1,12 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-function ItemListContainer(props) {
-  const {
-    data: { nombre, apellidos },
-  } = props;
+function ItemListContainer() {
 
   return (
     <Item>
       <p className="nombre">
-        Hola {nombre} {apellidos} Bienvenido a Gojo Store, la mejor tienda de funko pop
+       Bienvenido a Gojo Store, la mejor tienda de funko pop
       </p>
     </Item>
   );
