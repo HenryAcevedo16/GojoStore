@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import BurguerButtom from './BurguerButtom';
 import Logo from './img/Logo.png';
 import CartWidget from './CartWidget';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function NavBar() {
   const [clicked, setClicked] = useState(false);
@@ -20,18 +20,15 @@ function NavBar() {
         </Link>
         <h2>Gojo Store</h2>
         <div className={`links ${clicked ? 'active' : ''}`}>
-          <Link onClick={handleClick} to="/ItemListContainer">
-            Home
-          </Link>
-          <Link onClick={handleClick} to="/">
+          <NavLink  to="/category/manga">
             Mangas
-          </Link>
-          <Link onClick={handleClick} to="/">
+          </NavLink>
+          <NavLink  to="/category/funkopop">
             Funkopop
-          </Link>
-          <Link onClick={handleClick} to="/">
+          </NavLink>
+          <NavLink  to="/category/hoodie">
             Hoodies
-          </Link>
+          </NavLink>
         </div>
         <CartContainer>
           <CartWidget />
