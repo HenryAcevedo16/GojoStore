@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Item from './Item';
+import ItemDetailContainer from './ItemDetailContainer';
 
 function ItemList({ productos }) {
   return (

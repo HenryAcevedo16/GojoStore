@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import BurguerButtom from './BurguerButtom';
-import Logo from './img/Logo.png';
+import Logo from './logo/Logo.png';
 import CartWidget from './CartWidget';
 import { Link, NavLink } from 'react-router-dom';
 

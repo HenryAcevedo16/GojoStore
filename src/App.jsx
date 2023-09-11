@@ -2,7 +2,7 @@ import './App.css';
 import NavBar from './Components/Navbar';
 import ItemListContainer from './Components/ItemListContainer';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import ItemDetailContainer from "/src/Components/ItemDetailContainer";
+import ItemDetailContainer from "./Components/ItemDetailContainer";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import styled, { keyframes } from "styled-components";
-import ProductosJson from '/productos.json'
+import ProductosJson from './productos.json'
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 
@@ -18,7 +18,7 @@ function ItemListContainer() {
           resolve(ProductosJson);
         }
         
-      }, 2000)
+      }, 1000)
     })
   }
 
