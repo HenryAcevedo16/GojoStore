@@ -1,8 +1,10 @@
-import React from "react";
+import { useContext } from 'react';
+import { CartContext } from './CartContext';
 import styled from "styled-components";
 
 function CartWidget() {
-  const cartItemCount = 0; // Número fijo para el carrito
+  const { cartItemCount } = useContext(CartContext);
+
   return (
     <Cart>
       <div className="animated-container">
@@ -19,6 +21,14 @@ function CartWidget() {
         <span className="count">{cartItemCount}</span>
         <i className="material-icons"></i>
       </div>
+
+      <div>
+      {cartItemCount > 0 && (
+        <div>
+          <p>{cartItemCount} {cartItemCount === 1 ? 'item' : 'items'}</p>
+        </div>
+      )}
+    </div>
     </Cart>
   );
 }

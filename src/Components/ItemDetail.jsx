@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import ItemCount from './ItemCount';
+import { Link } from 'react-router-dom';
+import { CartContext } from './CartContext';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 function ItemDetail({ item }) {
-  // Estado para controlar la cantidad seleccionada
   const [quantity, setQuantity] = useState(1);
+  const { addItem, isInCart } = useContext(CartContext);
+  const MySwal = withReactContent(Swal);
 
-  // Función para incrementar la cantidad
-  const incrementQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+  const handleAddToCart = (count) => {
+    setQuantity(count);
 
-  // Función para decrementar la cantidad (con un mínimo de 1)
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+    // Llama a la función addItem para agregar el producto al carrito
+    addItem({
+      id: item.id, 
+      name: item.name,
+      price: item.price,
+      quantity: count,
+    });
+
+    // Muestra la alerta de SweetAlert
+    MySwal.fire({
+      title: <strong>¡Producto agregado al carrito!</strong>,
+      text: `Has agregado ${count} ${item.name}(s) al carrito.`,
+      icon: 'success',
+    });
   };
 
   return (
@@ -24,13 +37,10 @@ function ItemDetail({ item }) {
       <ProductDescription>{item.descripcion}</ProductDescription>
       <ProductCategory>Categoría: {item.category}</ProductCategory>
       <ProductPrice>Precio: ${item.price}</ProductPrice>
-      <QuantityContainer>
-        <QuantityLabel>Cantidad:</QuantityLabel>
-        <QuantityButton onClick={decrementQuantity}>-</QuantityButton>
-        <Quantity>{quantity}</Quantity>
-        <QuantityButton onClick={incrementQuantity}>+</QuantityButton>
-      </QuantityContainer>
-      <AddToCartButton>Agregar al carrito</AddToCartButton>
+      <ItemCount onAdd={handleAddToCart} />
+
+      {/* Verifica si el producto está en el carrito y muestra un mensaje */}
+      {isInCart(item.id) ? <p>Este producto está en tu carrito.</p> : null}
     </CardContainer>
   );
 }
@@ -79,45 +89,4 @@ const ProductPrice = styled.p`
   font-weight: bold;
   color: #007bff;
   margin-top: 10px;
-`;
-
-const QuantityContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-const QuantityLabel = styled.span`
-  font-size: 1rem;
-  margin-right: 10px;
-`;
-
-const QuantityButton = styled.button`
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  width: 30px;
-  height: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin: 0 5px;
-`;
-
-const Quantity = styled.span`
-  font-size: 1rem;
-  font-weight: bold;
-`;
-
-const AddToCartButton = styled.button`
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  text-decoration: none;
-  margin-top: 20px;
 `;
