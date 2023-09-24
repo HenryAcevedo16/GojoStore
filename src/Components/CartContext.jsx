@@ -6,30 +6,41 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
   const addItem = (product) => {
-    // Verificar si un producto ya está en el carrito
     const isInCart = cartItems.findIndex((item) => item.id === product.id);
-
+  
     if (isInCart >= 0) {
       const newCart = [...cartItems];
-      newCart[isInCart].quantity += 1;
+      newCart[isInCart].quantity += product.quantity;
       return setCartItems(newCart);
     }
-
-    // Si el producto no está en el carrito
+  
     setCartItems((prevState) => [
       ...prevState,
       {
         ...product,
-        quantity: 1,
       },
     ]);
   };
+  
 
-  const removeItem = (itemId) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
+  const removeItem = (itemId, quantity = 0) => {
+    // Buscar el artículo en el carrito
+    const itemIndex = cartItems.findIndex((item) => item.id === itemId);
+  
+    if (itemIndex !== -1) {
+      const newCart = [...cartItems];
+  
+      if (quantity > 0 && newCart[itemIndex].quantity > quantity) {
+        // Restar la cantidad especificada si es menor que la cantidad actual
+        newCart[itemIndex].quantity -= quantity;
+      } else {
+        // Eliminar completamente el artículo si no se especifica una cantidad o es igual o mayor que la cantidad actual
+        newCart.splice(itemIndex, 1);
+      }
+  
+      setCartItems(newCart);
+    }
   };
-
   const clear = () => {
     setCartItems([]);
   };
@@ -45,7 +56,7 @@ export function CartProvider({ children }) {
     }, 0);
 
     return total;
-    };
+  };
 
   return (
     <CartContext.Provider value={{ addItem, removeItem, clear, isInCart, cartItems, getTotalPrice }}>

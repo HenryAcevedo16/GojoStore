@@ -1,4 +1,4 @@
-import  { useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { CartContext } from './CartContext';
 import { Link } from 'react-router-dom';
@@ -15,11 +15,11 @@ function Cart() {
         <div>
           {cartItems.map((item) => (
             <CartItem key={item.id}> 
-              <img src={`/public/img${item.image}`} alt={item.name} />
+              <img src={item.image} alt={item.name} />
               <div>
                 <p>{item.name}</p>
                 <p>Precio: ${item.price}</p>
-                <p>Cantidad: {item.quantity}</p>
+                <p>Cantidad: {item.quantity}</p> {/* Muestra la cantidad del producto */}
               </div>
               <button onClick={() => removeItem(item.id)}>Eliminar</button>
             </CartItem>
@@ -56,7 +56,7 @@ const EmptyCartMessage = styled.p`
 const CartItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px; /* Aumenta el espacio entre los elementos del carrito */
 
   img {
     max-width: 100px;
@@ -69,6 +69,16 @@ const CartItem = styled.div`
     margin: 0;
   }
 
+  label {
+    font-size: 1rem;
+    margin-right: 5px;
+  }
+
+  input {
+    font-size: 1rem;
+    width: 40px;
+  }
+
   button {
     background-color: #ff0000;
     color: #fff;
@@ -77,6 +87,12 @@ const CartItem = styled.div`
     padding: 5px 10px;
     font-size: 1rem;
     cursor: pointer;
+    margin-bottom: 10px;
+    margin-left: 30px; 
+  }
+
+  button:hover {
+    background-color: #ff3333; 
   }
 `;
 
@@ -94,6 +110,12 @@ const ClearButton = styled.button`
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease; 
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 const BackLink = styled(Link)`

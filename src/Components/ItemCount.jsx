@@ -1,46 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function ItemCount({ onAdd }) {
-  const [quantity, setQuantity] = useState(1);
+function ItemCount({ onAdd, quantity, setQuantity }) {
+  const [count, setCount] = useState(quantity);
   const [addedToCart, setAddedToCart] = useState(false);
 
+  useEffect(() => {
+    setCount(quantity); // Actualiza el estado interno cuando cambia la prop quantity
+  }, [quantity]);
+
   const incrementQuantity = () => {
-    setQuantity(quantity + 1);
-    if (addedToCart) {
-      setAddedToCart(false); // Cambia a "Agregar al carrito" cuando aumentas la cantidad
-    }
+    setCount((prevCount) => prevCount + 1);
+    setAddedToCart(false);
+    setQuantity(count + 1); // Actualiza la cantidad en el componente padre
   };
 
   const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      if (addedToCart) {
-        setAddedToCart(false); // Cambia a "Agregar al carrito" cuando disminuyes la cantidad
-      }
+    if (count > 1) {
+      setCount((prevCount) => prevCount - 1);
+      setAddedToCart(false);
+      setQuantity(count - 1); // Actualiza la cantidad en el componente padre
     }
   };
 
   const handleAddToCart = () => {
-    onAdd(quantity);
-    setAddedToCart(true); // Cambia a "Terminar mi compra" después de agregar al carrito
+    onAdd(count);
+    setAddedToCart(true);
   };
 
   return (
     <QuantityContainer>
       <QuantityLabel>Cantidad:</QuantityLabel>
       <QuantityButton onClick={decrementQuantity}>-</QuantityButton>
-      <Quantity>{quantity}</Quantity>
+      <Quantity>{count}</Quantity>
       <QuantityButton onClick={incrementQuantity}>+</QuantityButton>
 
       {addedToCart ? (
         <Link to="/cart">
-          <AddToCartButton>Terminar mi compra</AddToCartButton>
+          <AddToCartButton>Terminar mi compra ({count} seleccionado(s))</AddToCartButton>
         </Link>
       ) : (
         <AddToCartButton onClick={handleAddToCart}>
-          {addedToCart ? 'Terminar mi compra' : 'Agregar al carrito'}
+          Agregar al carrito
         </AddToCartButton>
       )}
     </QuantityContainer>
@@ -48,6 +50,8 @@ function ItemCount({ onAdd }) {
 }
 
 export default ItemCount;
+
+
 
 const QuantityContainer = styled.div`
   display: flex;

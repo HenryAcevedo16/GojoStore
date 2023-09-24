@@ -2,135 +2,152 @@
     {
         "id": 1,
         "name":"Jujutsu Kaisen, Vol. 1 (1)",
-        "image": "/img/Products/Manga/Jujutsu kaisen Vol1.jpg",
+        "image": "https://m.media-amazon.com/images/I/51cyYX0w+ML._SY445_SX342_.jpg",
         "descripcion": "Sukuna de la Doble Cara es el nombre del primer volumen de la serie manga Jujutsu Kaisen, escrita e ilustrada por Gege Akutami.",
         "category": "manga",
-        "price": 20 
+        "price": 20,
+        "stock": 5
+
     },
 
     {
         "id": 2,
         "name":"Jujutsu Kaisen, Vol. 14 (14) ",
-        "image": "/img/Products/Manga/Jujutsu kaisen Vol14.jpg",
+        "image": "https://m.media-amazon.com/images/I/51PPkaPV+-L._SY445_SX342_.jpg",
         "descripcion": "Yuji Itadori está decidido a salvar al mundo de los espíritus malditos, pero pronto descubre que la mejor manera de hacerlo es perder lentamente su humanidad y convertirse en uno él mismo.",
         "category": "manga" ,
-        "price": 20  
+        "price": 20 ,
+        "stock":  7
     },
     {
         "id": 3,
         "name":"One Piece, Vol. 103 (103) ",
-        "image": "/img/Products/Manga/One pieve Vol 103.jpg",
+        "image": "https://m.media-amazon.com/images/I/51IXujjpjeL._SY445_SX342_.jpg",
         "descripcion": "Zoro consigue derrotar a dos artistas principales mientras el combate entre Luffy y Kaido sufre un giro radical! Por otro lado, Kid y Law aguantan en su batalla campal contra Big Mom.",
         "category": "manga" ,
-        "price": 20  
+        "price": 20,
+        "stock":   8
     },
 
     {
         "id": 4,
         "name":"Tokyo Ghoul, Vol. 11 (11) ",
-        "image": "/img/Products/Manga/tokyo ghoul vol11.jpg",
+        "image": "https://m.media-amazon.com/images/I/61-6WKFKcIL._SY445_SX342_.jpg",
         "descripcion": "La CCG y Kaneki parece que tienen el mismo objetivo: averiguar los verdaderos motivos que impulsaron al doctor Kanou a mezclar ADN humano con el de ghoul para crear a seres tan poderosos como el propio Kaneki… o las gemelas que le protegen.",
         "category": "manga" ,
-        "price": 20 
+        "price": 20,
+        "stock":    9
     },
 
     {
         "id": 5,
         "name":"The Eminence in Shadow, Vol. 1 ",
-        "image": "/img/Products/Manga/eminence in the shadow.jpg",
+        "image": "https://m.media-amazon.com/images/I/51zRC3f8GXL._SY445_SX342_.jpg",
         "descripcion": "Grandes héroes y diabólicos villanos son el tipo de personajes que la gente anhela ser, pero este no es el caso de Cid Kagenou. Él aspira a convertirse en la mente maestra detrás de todo, moviendo los hilos y haciendo que sus maquinaciones impulsen toda la historia.",
         "category": "manga"  ,
-        "price": 20 
+        "price": 20,
+        "stock": 5
+        
     },
 
     {
         "id": 6,
         "name":"JUJUTSU KAISEN POP! SUGURU GETO",
-        "image": "/img/Products/funkopop/suguru geto.png",
+        "image": "https://funko.com/dw/image/v2/BGTS_PRD/on/demandware.static/-/Sites-funko-master-catalog/default/dw7eb64ffd/images/funko/upload/72043_JJK_Geto_POP_GLAM-WEB.png?sw=800&sh=800",
         "descripcion": "Suguru Geto fue expulsado de la escuela secundaria Tokyo Jujutsu por actos violentos y de odio contra no brujos y está buscando una manera de continuar su búsqueda. ¡Completa tu conjunto Jujutsu Kaisen y ayuda a los hechiceros a conseguir Pop! Suguru Geto está bajo control antes de atacar de nuevo. La figura de vinilo mide aproximadamente 4,2 pulgadas de alto.",
         "category": "funkopop"  ,
-        "price": 20 
+        "price": 20,
+        "stock": 5
     },
 
     {
         "id": 7,
         "name":"HUNTER X HUNTER POP! HISOKA",
-        "image": "/img/Products/funkopop/hisoka.png",
+        "image": "https://funko.com/dw/image/v2/BGTS_PRD/on/demandware.static/-/Sites-funko-master-catalog/default/dwf14e580a/images/funko/41067-1.png?sw=800&sh=800",
         "descripcion": "Hisoka es un maestro de la ilusión y su objetivo es derrotar a todos los que sean más fuertes que él. ¡ Monta tu colección Hunter X Hunter con Pop! Hisoka. El coleccionable mide aproximadamente 3,75 pulgadas de alto.",
         "category": "funkopop",
-        "price":  15
+        "price":  15,
+        "stock": 5
     },
 
     {
         "id": 8,
         "name":"JUJUTSU KAISEN POP! SATORU GOJO UNMASKED WITH HOLLOW PURPLE",
-        "image": "/img/Products/funkopop/gojo.png",
+        "image": "https://funko.com/dw/image/v2/BGTS_PRD/on/demandware.static/-/Sites-funko-master-catalog/default/dw84e8aa59/images/funko/63142-1_C.png?sw=800&sh=800",
         "descripcion": "La clase está en sesión con Pop! Satoru Gojo a cargo. ¡Estallido! Satoru Gojo está aprovechando su técnica Hollow Purple, listo para enfrentarse a los espíritus malditos. ¡Únete a papá! Satoru Gojo y haz crecer tu colección de Jujutsu Kaisen . La figura de vinilo mide aproximadamente 4,51 pulgadas de alto.",
         "category": "funkopop"  ,
-        "price": 20 
+        "price": 20 ,
+        "stock": 5
     },
 
     {
         "id": 9,
         "name":"JONE PIECE POP! RORONOA ZORO",
-        "image": "/img/Products/funkopop/zoro.png",
+        "image": "https://funko.com/dw/image/v2/BGTS_PRD/on/demandware.static/-/Sites-funko-master-catalog/default/dw236b5bb4/images/funko/54462-1.png?sw=800&sh=800",
         "descripcion": "Roronoa Zoro es un espadachín y ex cazarrecompensas que busca reunirse con los miembros de su tripulación. ¡Trae a papá! Roronoa Zoro en tu colección de Piratas del Sombrero de Paja de One Piece . La figura de vinilo mide aproximadamente 4,75 pulgadas de alto.",
         "category": "funkopop",
-        "price": 15
+        "price": 15,
+        "stock": 5
     },
 
     {
         "id": 10,
         "name":"JUJUTSU KAISEN POP! NOBARA KUGISAKI IN FIGHT STANCE",
-        "image": "/img/Products/funkopop/nobara.png",
+        "image": "https://funko.com/dw/image/v2/BGTS_PRD/on/demandware.static/-/Sites-funko-master-catalog/default/dw0874de12/images/funko/63730-1.png?sw=800&sh=800",
         "descripcion": "¡El Pop exclusivo de Funko! Nobara Kugisaki está listo para unirse a la lucha para salvar a Itadori en tu colección Jujutsu Kaisen . La figura de vinilo mide aproximadamente 3,57 pulgadas de alto.",
         "category": "funkopop" ,
-        "price": 20  
+        "price": 20  ,
+        "stock": 5
     },
 
     {
         "id": 11,
-        "name":"Sudadera con capucha Gojo Satoru, Jujutsu Kaisen",
-        "image": "/img/Products/Hoodie/gojo.jpg",
-        "descripcion": "Sukuna de la Doble Cara es el nombre del primer volumen de la serie manga Jujutsu Kaisen, escrita e ilustrada por Gege Akutami.",
+        "name":"Cos-Animefly Jujutsu Kaisen ",
+        "image": "https://m.media-amazon.com/images/I/61k2MM0oJCL._AC_UX569_.jpg",
+        "descripcion": "Cos-Animefly Jujutsu Kaisen - Sudadera con capucha para cosplay, casual, para niños, Adluts y jóvenes.",
         "category": "hoodie",
-        "price": 20
+        "price": 20,
+        "stock": 5
     },
 
     {
         "id": 12,
         "name":"Jujutsu Kaisen Goujian Sudadera unisex con capucha para hombre",
-        "image": "/img/Products/Hoodie/jujtsu.jpg",
-        "descripcion": "Goujian Sudadera unisex con capucha para hombre, sudadera con capucha de manga larga con estampado 3D",
+        "image": "https://m.media-amazon.com/images/I/71MMKE0rJ6L._AC_SX569._SX._UX._SY._UY_.jpg",
+        "descripcion": "Sudadera unisex con capucha de Jujutsu Kaisen con estampado digital Gojo con capucha y patrón de galaxia Satoru para hombres y mujeres",
         "category": "hoodie",
-        "price": 20 
+        "price": 20,
+        "stock": 5
     },
 
     {
         "id": 13,
-        "name":"kimetsu no yaiba Nikuclg Sudaderas con capucha",
-        "image": "/img/Products/Hoodie/kimetsu no yaiba.jpg",
+        "name":"kimetsu no yaiba sudadera con capucha con orejas de ratón",
+        "image": "https://m.media-amazon.com/images/I/61xEk0Hql-L._AC_UX522_.jpg",
         "descripcion": "Nikuclg Sudaderas con capucha de anime para jóvenes/adultos, sudaderas con capucha 3D Pritnted Unisex Cosplay Pullover Sudaderas",
         "category": "hoodie",
-        "price": 20   
+        "price": 20,
+        "stock": 5   
     },
 
     {
         "id": 14,
-        "name":"Naruto Wankele Anime Men Hoodie",
-        "image": "/img/Products/Hoodie/naruto.jpg",
+        "name":"DBZ Wankele Anime Men Hoodie",
+        "image": "https://m.media-amazon.com/images/I/616B2odp-pL._AC_UX569_.jpg",
         "descripcion": "Wankele Anime Men'S Hoodie 3d Printed Cartoon Hoodies Game Cosplay Sweatshirt Unisex Sports Tops",
         "category": "hoodie",
-        "price": 20
+        "price": 20,
+        "stock": 5
     },
 
     {
         "id": 15,
         "name":"One piece YHPMQA Anime Hoodies Adults",
-        "image": "/img/Products/Hoodie/one piece.jpg",
+        "image": "https://m.media-amazon.com/images/I/71eiyC4TvOL._AC_UX569_.jpg",
         "descripcion": "YHPMQA Anime Hoodies Adults 3D Printed Novelty Hoodies Men'S Cosplay Pullover Sweatshirts",
         "category": "hoodie"  ,
-        "price": 20 
+        "price": 20,
+        "stock": 5
     }
 
 

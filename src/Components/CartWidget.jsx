@@ -1,45 +1,64 @@
-import { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; 
 import { CartContext } from './CartContext';
 import styled from "styled-components";
 
 function CartWidget() {
-  const { cartItemCount } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+
+  // Use useEffect para actualizar la cantidad cuando cambie el carrito
+  useEffect(() => {
+    const newTotalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+    setTotalQuantity(newTotalQuantity);
+  }, [cartItems]);
 
   return (
-    <Cart>
-      <div className="animated-container">
-        <div className="cart-wrapper">
-          <div className="cart-container"></div>
-        </div>
+    <Link to="/cart">
+      <Cart>
+        <div className="animated-container">
+          <div className="cart-wrapper">
+            <div className="cart-container"></div>
+          </div>
 
-        <div className="cart-handle-wrapper">
-          <div className="cart-handle"></div>
+          <div className="cart-handle-wrapper">
+            <div className="cart-handle"></div>
+          </div>
+          <div className="cart-item"></div>
         </div>
-        <div className="cart-item"></div>
-      </div>
-      <div className="cart">
-        <span className="count">{cartItemCount}</span>
-        <i className="material-icons"></i>
-      </div>
-
-      <div>
-      {cartItemCount > 0 && (
-        <div>
-          <p>{cartItemCount} {cartItemCount === 1 ? 'item' : 'items'}</p>
+        <div className="cart">
+          <span className="count">{totalQuantity}</span>
+          <i className="material-icons"></i>
         </div>
-      )}
-    </div>
-    </Cart>
+      </Cart>
+    </Link>
   );
 }
 
 export default CartWidget;
+
+
 
 const Cart = styled.div`
   .animated-container {
     position: relative;
     margin: 0;
     transform: scale(0.5);
+  }
+  .count {
+    position: absolute;
+    top: -18px;
+    left: 12px; 
+    background-color: #ffffff; 
+    color: #000000; 
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
   }
   .cart-wrapper {
     width: 55px;

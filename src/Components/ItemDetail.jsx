@@ -12,11 +12,13 @@ function ItemDetail({ item }) {
   const MySwal = withReactContent(Swal);
 
   const handleAddToCart = (count) => {
+    item.stock -= count;
     setQuantity(count);
 
     // Llama a la función addItem para agregar el producto al carrito
     addItem({
       id: item.id, 
+      image: item.image,
       name: item.name,
       price: item.price,
       quantity: count,
@@ -31,13 +33,14 @@ function ItemDetail({ item }) {
   };
 
   return (
+    
     <CardContainer>
       <ProductImage src={item.image} alt={item.name} />
       <ProductName>{item.name}</ProductName>
       <ProductDescription>{item.descripcion}</ProductDescription>
       <ProductCategory>Categoría: {item.category}</ProductCategory>
       <ProductPrice>Precio: ${item.price}</ProductPrice>
-      <ItemCount onAdd={handleAddToCart} />
+      <ItemCount onAdd={handleAddToCart} quantity={quantity} setQuantity={setQuantity} />
 
       {/* Verifica si el producto está en el carrito y muestra un mensaje */}
       {isInCart(item.id) ? <p>Este producto está en tu carrito.</p> : null}
@@ -46,6 +49,7 @@ function ItemDetail({ item }) {
 }
 
 export default ItemDetail;
+
 
 const CardContainer = styled.div`
   background-color: #fff;

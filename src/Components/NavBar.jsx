@@ -1,53 +1,57 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
-import BurguerButtom from './BurguerButtom'
-import Logo from './img/Logo.png'
-import CartWidget from './CartWidget'
-import ItemListContainer from './ItemListContainer'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import BurguerButtom from './BurguerButtom';
+import Logo from './logo/Logo.png';
+import CartWidget from './CartWidget';
+import { Link, NavLink } from 'react-router-dom';
+
 function NavBar() {
+  const [clicked, setClicked] = useState(false);
 
-    const [clicked, setClicked] = useState(false)
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
 
-    const handleClick = () => {
-        //Cuando esta true lo pasa a false y vice versa
-        setClicked(!clicked)
-    }
-
-    const data = {
-      nombre: "Henry Emil",
-      apellidos: "Acevedo Jerez",
-    }
   return (
     <>
       <NavContainer>
-        <LogoImage src={Logo} alt="Logo" />
+        <Link to="/">
+          <LogoImage src={Logo} alt="Logo" />
+        </Link>
         <h2>Gojo Store</h2>
-              <div className={`links ${clicked ? 'active' : ''}`}>
-              <a onClick={handleClick} href="#h">Home</a>
-              <a onClick={handleClick} href="#h">shop</a>
-              <a onClick={handleClick} href="#h">About</a>
-              <a onClick={handleClick} href="#h">Contact</a>
-              </div> 
-                <CartContainer>
-                  <CartWidget />
-                </CartContainer>
-                <div className='burguer'>
-                  <BurguerButtom clicked={clicked} handleClick={handleClick}/>
-                </div> 
-                <BgDiv className={`initial ${clicked ? 'active' : ''}`}></BgDiv> 
-      </ NavContainer>
+        <div className={`links ${clicked ? 'active' : ''}`}>
+          <NavLink  to="/category/manga">
+            Mangas
+          </NavLink>
+          <NavLink  to="/category/funkopop">
+            Funkopop
+          </NavLink>
+          <NavLink  to="/category/hoodie">
+            Hoodies
+          </NavLink>
+        </div>
+        <CartContainer>
+          <CartWidget />
+        </CartContainer>
+        <div className="burguer">
+          <BurguerButtom clicked={clicked} handleClick={handleClick} />
+        </div>
+        <BgDiv className={`initial ${clicked ? 'active' : ''}`}></BgDiv>
+      </NavContainer>
 
-      <ItemListContainer data={data}/>
     </>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
 
-const NavContainer = styled.nav `
+const NavContainer = styled.nav`
   h2{
     color: white;
     font-weight: 400;
+    span{
+      font-weight: bold;
+    }
   }
   padding: .4rem;
   background-color: #333;
@@ -59,7 +63,6 @@ const NavContainer = styled.nav `
     text-decoration: none;
     margin-right: 1rem;
   }
-
   .links{
     position: absolute;
     top: -700px;
@@ -70,22 +73,21 @@ const NavContainer = styled.nav `
     text-align: center;
     transition: all .5s ease;
     a{
-        color: white;
-        font-size: 2rem;
-        display: block;
+      color: white;
+      font-size: 2rem;
+      display: block;
     }
-    @media (min-width: 768px){  
-        position: initial;
-        margin: 0;
-        a{
-            font-size: 1rem;
-            color: white;
-            display: inline;
-
-        }   
+    @media(min-width: 768px){
+      position: initial;
+      margin: 0;
+      a{
+        font-size: 1rem;
+        color: white;
+        display: inline;
+      }
+      display: block;
     }
   }
-
   .links.active{
     width: 100%;
     display: block;
@@ -97,45 +99,43 @@ const NavContainer = styled.nav `
     right: 0;
     text-align: center;
     a{
-        color: #white;
-        margin-top: 1rem;
-        font-size: 2rem;
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: white;
     }
-
   }
-  
-  .burguer {
+  .burguer{
     @media(min-width: 768px){
-        display: none;
+      display: none;
     }
   }
 `
 
 const BgDiv = styled.div`
-  background-color: #222 ;
+  background-color: #222;
   position: absolute;
   top: -1000px;
   left: -1000px;
   width: 100%;
   height: 100%;
   z-index: -1;
-  transition : all .6s ease ;
-
+  transition: all .6s ease ;
+  
   &.active{
     border-radius: 0 0 80% 0;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100$;
+    height: 100%;
   }
 `
 
 const LogoImage = styled.img`
-max-height: 70px
-`
+  max-height: 70px;
+`;
 
 const CartContainer = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
 `;
