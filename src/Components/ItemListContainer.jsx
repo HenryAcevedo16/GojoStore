@@ -1,52 +1,47 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import ProductosJson from './productos.json'
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 
 function ItemListContainer() {
+  const [productos, setProductos] = useState([]);
+  const { categoryId } = useParams();
 
-  const mockApi = (categoryId) =>{
-    return new Promise((resolve, reject) =>{
-      setTimeout(() => {
-        if(categoryId !== undefined){
-          const productosFilter = ProductosJson.filter((item) => item.category === categoryId)
+  useEffect(() => {
+    const db = getFirestore();
+    let q;
 
-          resolve(productosFilter)
+    if (categoryId) {
+      // Si categoryId está definido, aplicamos el filtro por categoría
+      q = query(collection(db, "productos"), where("category", "==", categoryId));
+    } else {
+      // Si categoryId no está definido, obtenemos todos los productos sin filtro
+      q = collection(db, "productos");
+    }
 
-        }else {
-          resolve(ProductosJson);
-        }
-        
-      }, 1000)
-    })
-  }
-
-  const [productos, setProductos] = useState([])
-  const {categoryId} = useParams ()
-
-  useEffect(() =>{
-    mockApi(categoryId).then((data) => setProductos(data))
-  }, [categoryId])
-
+    getDocs(q)
+      .then((snapshot) => {
+        setProductos(
+          snapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+          })
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [categoryId]);
 
   return (
     <>
-    <Item>
-      <p className="nombre">
-       Bienvenido a Gojo Store, la mejor tienda de funko pop
-      </p>
-    </Item>
-
-    <div>
-      <ItemList productos={productos}/>
-    </div>
-
-
+      <Item>
+        <p className="nombre">Bienvenido a Gojo Store, la mejor tienda de funko pop</p>
+      </Item>
+      <div>
+        <ItemList productos={productos} />
+      </div>
     </>
-    
-
-    
   );
 }
 

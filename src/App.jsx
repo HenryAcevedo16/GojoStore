@@ -5,6 +5,9 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import ItemDetailContainer from "./Components/ItemDetailContainer";
 import Cart from "./Components/Cart";
 import { CartProvider } from './Components/CartContext';
+import Checkout from './Components/Checkout';
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
             <Route exact path="/category/:categoryId" element={< ItemListContainer/>} />
             <Route exact path="/item/:itemId" element={<ItemDetailContainer/>} />
             <Route exact path="/cart" element={<Cart/>} />
+            <Route exact path="/checkout" element={<Checkout/>}/>
+            <Route exact path="/login" element={<Login/>}/>
+            <Route exact path="/signup" element={<SignUp/>}/>
         </Routes>
       </BrowserRouter>
     </CartProvider>  

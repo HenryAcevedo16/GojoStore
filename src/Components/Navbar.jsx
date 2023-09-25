@@ -29,6 +29,10 @@ function NavBar() {
           <NavLink  to="/category/hoodie">
             Hoodies
           </NavLink>
+
+          <NavLink to="/login">
+            Login
+          </NavLink>
         </div>
         <CartContainer>
           <CartWidget />
