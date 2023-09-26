@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
@@ -11,35 +11,42 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const history = useHistory();
+  const MySwal = withReactContent(Swal);
 
   const handleSignup = async () => {
     const auth = getAuth();
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
+  
       const db = getFirestore();
       await addDoc(collection(db, "users"), {
         firstName: name,
         lastName: lastName,
         email: email,
       });
-
+  
       MySwal.fire({
         title: <strong>¡Registro Exitoso!</strong>,
         text: `Bienvenido ${name} ${lastName} a GojoStore.`,
         icon: 'success',
       }).then(() => {
-        // Redirigir al usuario a la página de inicio de sesión
-        history.push("/login");
+        // Limpiar el formulario después de mostrar la alerta
+        setName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
       });
-
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.error("Error al registrarse:", errorCode, errorMessage);
+
+      //Alerta para cuando haya un error
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al registrar usuario',
+        text: 'Error al registrar usuario, inténtalo de nuevo con otro correo o verificar el mismo.'
+      })
     }
   };
 

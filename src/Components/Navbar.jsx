@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BurguerButtom from './BurguerButtom';
 import Logo from './logo/Logo.png';
@@ -7,10 +7,23 @@ import { Link, NavLink } from 'react-router-dom';
 
 function NavBar() {
   const [clicked, setClicked] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
   };
+
+  useEffect(()=>{
+    //Verificar en localStorage si el usuario ha iniciado sesion
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+    if(isAuthenticated === 'true'){
+      setIsLoggedIn(true);
+    }else{
+      setIsLoggedIn(false);
+    }
+
+  },[])
 
   return (
     <>
@@ -30,9 +43,13 @@ function NavBar() {
             Hoodies
           </NavLink>
 
-          <NavLink to="/login">
-            Login
-          </NavLink>
+          {isLoggedIn ? (
+            <span>Nombre del Usuario</span>
+          ) : (
+            <NavLink to="/login">
+              Login
+            </NavLink>
+          )}
         </div>
         <CartContainer>
           <CartWidget />

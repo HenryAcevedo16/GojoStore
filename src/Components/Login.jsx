@@ -1,15 +1,49 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
-import {getAuth, signInAnonymously} from "firebase/auth"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Agregar aquí la lógica de autenticación
-    
+    const auth = getAuth();
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // Inicio de sesión correcto
+      const user = userCredential.user;
+
+      // Almacenar un indicador de sesión en LocalStorage
+      localStorage.setItem('isAuthenticated', 'true');
+
+      // Alerta de bienvenida al usuario
+      Swal.fire({
+        icon: 'success',
+        title: `¡Bienvenido a GojoStore Nakama!`,
+        text: 'Tu sesión ha iniciado correctamente'
+      }).then(() => {
+        setTimeout(() => {
+          navigate("/")
+        }, 1000);
+      })
+
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      // Alerta de un error al usuario
+      Swal.fire({
+        icon: 'error',
+        title: 'Error de inicio de sesión',
+        text: 'El correo o la contraseña son incorrectos. Por favor, inténtalo de nuevo.'
+      })
+    }
   };
 
   return (
@@ -105,7 +139,7 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  width: 48%; /* Ajusta el ancho para que haya espacio entre los botones */
+  width: 48%;
   font-size: 18px;
 `;
 
@@ -117,7 +151,7 @@ const ResetPass = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  width: 48%; /* Ajusta el ancho para que haya espacio entre los botones */
+  width: 48%;
   font-size: 18px;
 `;
 
