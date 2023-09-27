@@ -19,13 +19,14 @@ function Cart() {
               <div>
                 <p>{item.name}</p>
                 <p>Precio: ${item.price}</p>
-                <p>Cantidad: {item.quantity}</p> {/* Muestra la cantidad del producto */}
+                <p>Cantidad: {item.quantity}</p>
               </div>
               <button onClick={() => removeItem(item.id)}>Eliminar</button>
             </CartItem>
           ))}
           <TotalPrice>Precio Total: ${getTotalPrice()}</TotalPrice>
           <ClearButton onClick={clear}>Vaciar Carrito</ClearButton>
+          <Compra as={Link} to="/checkout">Finalizar Compra</Compra> {/* Usamos Link para redirigir a /checkout */}
         </div>
       )}
       <BackLink to="/">Volver a la tienda</BackLink>
@@ -123,4 +124,21 @@ const BackLink = styled(Link)`
   margin-top: 20px;
   font-size: 1rem;
   text-decoration: none;
+`;
+
+const Compra = styled.button`
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 5px;
+padding: 10px 20px;
+font-size: 1rem;
+cursor: pointer;
+margin-top: 20px;
+transition: background-color 0.3s ease; 
+margin-bottom: 10px;
+margin-left: 20px; 
+
+&:hover {
+  background-color: #0056b3;
 `;

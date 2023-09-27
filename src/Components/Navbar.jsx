@@ -13,17 +13,23 @@ function NavBar() {
     setClicked(!clicked);
   };
 
-  useEffect(()=>{
-    //Verificar en localStorage si el usuario ha iniciado sesion
+  useEffect(() => {
+    // Verificar en localStorage si el usuario ha iniciado sesión
     const isAuthenticated = localStorage.getItem('isAuthenticated');
 
-    if(isAuthenticated === 'true'){
+    if (isAuthenticated === 'true') {
       setIsLoggedIn(true);
-    }else{
+    } else {
       setIsLoggedIn(false);
     }
+  }, []);
 
-  },[])
+  // Función para manejar el cierre de sesión
+  const handleLogout = () => {
+    // Limpia el Local Storage y actualiza el estado
+    localStorage.clear();
+    setIsLoggedIn(false);
+  };
 
   return (
     <>
@@ -33,22 +39,17 @@ function NavBar() {
         </Link>
         <h2>Gojo Store</h2>
         <div className={`links ${clicked ? 'active' : ''}`}>
-          <NavLink  to="/category/manga">
-            Mangas
-          </NavLink>
-          <NavLink  to="/category/funkopop">
-            Funkopop
-          </NavLink>
-          <NavLink  to="/category/hoodie">
-            Hoodies
-          </NavLink>
+          <NavLink to="/category/manga">Mangas</NavLink>
+          <NavLink to="/category/funkopop">Funkopop</NavLink>
+          <NavLink to="/category/hoodie">Hoodies</NavLink>
 
           {isLoggedIn ? (
-            <span>Nombre del Usuario</span>
+            <>
+              <NavLink to="/profile">Profile</NavLink>
+              <button onClick={handleLogout}>Logout</button>
+            </>
           ) : (
-            <NavLink to="/login">
-              Login
-            </NavLink>
+            <NavLink to="/login">Login</NavLink>
           )}
         </div>
         <CartContainer>
@@ -59,7 +60,6 @@ function NavBar() {
         </div>
         <BgDiv className={`initial ${clicked ? 'active' : ''}`}></BgDiv>
       </NavContainer>
-
     </>
   );
 }
