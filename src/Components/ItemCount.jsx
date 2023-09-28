@@ -32,9 +32,11 @@ function ItemCount({ onAdd, quantity, setQuantity }) {
   return (
     <QuantityContainer>
       <QuantityLabel>Cantidad:</QuantityLabel>
-      <QuantityButton onClick={decrementQuantity}>-</QuantityButton>
-      <Quantity>{count}</Quantity>
-      <QuantityButton onClick={incrementQuantity}>+</QuantityButton>
+      <QuantityButtons>
+        <QuantityButton onClick={decrementQuantity}>-</QuantityButton>
+        <Quantity>{count}</Quantity>
+        <QuantityButton onClick={incrementQuantity}>+</QuantityButton>
+      </QuantityButtons>
 
       {addedToCart ? (
         <Link to="/cart">
@@ -51,18 +53,21 @@ function ItemCount({ onAdd, quantity, setQuantity }) {
 
 export default ItemCount;
 
-
-
 const QuantityContainer = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 `;
 
 const QuantityLabel = styled.span`
   font-size: 1rem;
   margin-bottom: 10px;
+`;
+
+const QuantityButtons = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const QuantityButton = styled.button`
@@ -80,7 +85,7 @@ const QuantityButton = styled.button`
 const Quantity = styled.span`
   font-size: 1rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin: 0 10px;
 `;
 
 const AddToCartButton = styled.button`

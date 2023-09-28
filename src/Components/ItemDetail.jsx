@@ -3,13 +3,10 @@ import styled from 'styled-components';
 import ItemCount from './ItemCount';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 
 function ItemDetail({ item }) {
   const [quantity, setQuantity] = useState(1);
   const { addItem, isInCart } = useContext(CartContext);
-  const MySwal = withReactContent(Swal);
 
   const handleAddToCart = (count) => {
     item.stock -= count;
@@ -23,33 +20,37 @@ function ItemDetail({ item }) {
       price: item.price,
       quantity: count,
     });
-
-    // Muestra la alerta de SweetAlert
-    MySwal.fire({
-      title: <strong>¡Producto agregado al carrito!</strong>,
-      text: `Has agregado ${count} ${item.name}(s) al carrito.`,
-      icon: 'success',
-    });
   };
 
   return (
-    
-    <CardContainer>
-      <ProductImage src={item.image} alt={item.name} />
-      <ProductName>{item.name}</ProductName>
-      <ProductDescription>{item.descripcion}</ProductDescription>
-      <ProductCategory>Categoría: {item.category}</ProductCategory>
-      <ProductPrice>Precio: ${item.price}</ProductPrice>
-      <ItemCount onAdd={handleAddToCart} quantity={quantity} setQuantity={setQuantity} />
+    <Container>
+      <CardContainer>
+        <ProductImage src={item.image} alt={item.name} loading="lazy"/>
+        <ProductInfo>
+          <ProductName>{item.name}</ProductName>
+          <ProductDescription>{item.descripcion}</ProductDescription>
+          <ProductCategory>Categoría: {item.category}</ProductCategory>
+          <ProductPrice>Precio: ${item.price}</ProductPrice>
+          <ItemCount onAdd={handleAddToCart} quantity={quantity} setQuantity={setQuantity} />
 
-      {/* Verifica si el producto está en el carrito y muestra un mensaje */}
-      {isInCart(item.id) ? <p>Este producto está en tu carrito.</p> : null}
-    </CardContainer>
+          {/* Verifica si el producto está en el carrito y muestra un mensaje */}
+          {isInCart(item.id) ? <p>Este producto está en tu carrito.</p> : null}
+        </ProductInfo>
+      </CardContainer>
+    </Container>
   );
 }
 
 export default ItemDetail;
 
+const Container = styled.div`
+  margin-botton: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+`;
 
 const CardContainer = styled.div`
   background-color: #fff;
@@ -57,19 +58,21 @@ const CardContainer = styled.div`
   border-radius: 10px;
   padding: 20px;
   text-align: center;
-  width: 100%;
+  width: 80%; /* Reducimos el tamaño del contenedor */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  display: flex;
+  align-items: center;
 `;
 
 const ProductImage = styled.img`
-  max-width: 20%;
+  max-width: 30%;
   height: auto;
-  margin-bottom: 10px;
+  margin-right: 20px;
+`;
+
+const ProductInfo = styled.div`
+  flex-grow: 1;
+  text-align: left;
 `;
 
 const ProductName = styled.h2`

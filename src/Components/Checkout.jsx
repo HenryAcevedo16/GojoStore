@@ -1,23 +1,60 @@
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import {} from "firebase/firestore"
+import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { CartContext } from './CartContext';
+import Orden from './Orden';
 
 function Checkout() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [ordenId, setOrdenId] = useState();
+  
+  // Obtiene el valor de cartItems desde el contexto del carrito
+  const { cartItems, getTotalPrice } = useContext(CartContext);
 
-  const sendOrder = () =>{
+  function crearOrden() {
+    const db = getFirestore();
+    const ordenesRef = collection(db, "ordenes");
+
+    // Agrega la orden a la colección "ordenes"
     const order = {
-      buyer: {name: "", email: "", phone: ""},
-     
-    }
+      buyer: {
+        name,
+        email,
+        phone,
+      },
+      items: cartItems.map((producto) => ({
+        id: producto.id,
+        title: producto.name,
+        price: producto.price,
+        cant: producto.quantity,
+      })),
+      total: getTotalPrice(),
+    };
+
+    addDoc(ordenesRef, order)
+      .then((docRef) => {
+      
+        console.log("Orden creada con ID:", docRef.id);
+        setOrdenId(docRef.id);
+
+        clear();
+      })
+      .catch((error) => {
+        console.error("Error al crear la orden:", error);
+        // Maneja el error de acuerdo a tus necesidades
+      });
+  }
+
+  if (ordenId) {
+    return <Orden ordenId={ordenId} cartItems={cartItems} totalPrice={getTotalPrice()} />;
   }
 
   return (
     <Container>
       <FormContainer>
-        <Formulario>
+        <Formulario onSubmit={(e) => e.preventDefault()}>
           <FormGroup>
             <Label>Name</Label>
             <Input
@@ -43,7 +80,7 @@ function Checkout() {
             />
           </FormGroup>
         </Formulario>
-        <Finalizar>Finalizar</Finalizar>
+        <Finalizar onClick={crearOrden}>Finalizar</Finalizar>
       </FormContainer>
     </Container>
   );

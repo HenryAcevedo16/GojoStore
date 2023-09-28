@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
@@ -29,19 +29,15 @@ function ItemListContainer() {
         );
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("Error al obtener los datos:", error);
       });
   }, [categoryId]);
 
   return (
-    <>
-      <Item>
-        <p className="nombre">Bienvenido a Gojo Store, la mejor tienda de funko pop</p>
-      </Item>
-      <div>
-        <ItemList productos={productos} />
-      </div>
-    </>
+    <Container>
+      <WelcomeMessage>Bienvenido a Gojo Store, la mejor tienda de Funko Pop</WelcomeMessage>
+      <ItemList productos={productos} />
+    </Container>
   );
 }
 
@@ -56,17 +52,17 @@ const fadeInScale = keyframes`
   }
 `;
 
-const Item = styled.div`
+const Container = styled.div`
   margin: auto;
   text-align: center;
   animation: ${fadeInScale} 1s ease-in-out;
+`;
 
-  .nombre {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
-  }
+const WelcomeMessage = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
 `;
 
 export default ItemListContainer;

@@ -15,7 +15,7 @@ function Cart() {
         <div>
           {cartItems.map((item) => (
             <CartItem key={item.id}> 
-              <img src={item.image} alt={item.name} />
+              <img src={item.image} alt={item.name} loading="lazy"/>
               <div>
                 <p>{item.name}</p>
                 <p>Precio: ${item.price}</p>
