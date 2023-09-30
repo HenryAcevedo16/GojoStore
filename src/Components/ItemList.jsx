@@ -41,9 +41,11 @@ const CardContainer = styled.div`
 `;
 
 const ItemImage = styled.img`
-  max-width: 100%;
-  height: auto;
+  max-width: 90%;
+  height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
   margin-bottom: 10px;
+  width: 50%; /* Agrega este atributo width para asegurarte de que la imagen llene su contenedor */
+  max-height: 300px; /* Establece una altura máxima para que las imágenes no sean demasiado grandes */
 `;
 
 const ItemInfo = styled.div`

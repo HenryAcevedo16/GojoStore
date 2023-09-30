@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { CartContext } from './CartContext';
@@ -11,7 +11,7 @@ function Checkout() {
   const [ordenId, setOrdenId] = useState();
   
   // Obtiene el valor de cartItems desde el contexto del carrito
-  const { cartItems, getTotalPrice } = useContext(CartContext);
+  const { cartItems, getTotalPrice, clear } = useContext(CartContext);
 
   function crearOrden() {
     const db = getFirestore();
@@ -35,11 +35,10 @@ function Checkout() {
 
     addDoc(ordenesRef, order)
       .then((docRef) => {
-      
+        // La orden se ha agregado con éxito, docRef contiene la referencia al documento creado
         console.log("Orden creada con ID:", docRef.id);
         setOrdenId(docRef.id);
 
-        clear();
       })
       .catch((error) => {
         console.error("Error al crear la orden:", error);
@@ -48,7 +47,7 @@ function Checkout() {
   }
 
   if (ordenId) {
-    return <Orden ordenId={ordenId} cartItems={cartItems} totalPrice={getTotalPrice()} />;
+    return <Orden ordenId={ordenId} />;
   }
 
   return (

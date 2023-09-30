@@ -45,7 +45,7 @@ const ProductImage = styled.img`
   height: auto;
   transition: transform 0.2s ease-in-out;
 
-  ${CardContainer}:hover & {
+  &:hover {
     transform: scale(1.1); /* Efecto de zoom en la imagen al hacer hover */
   }
 `;
